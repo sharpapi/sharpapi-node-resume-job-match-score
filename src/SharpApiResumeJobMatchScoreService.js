@@ -5,6 +5,15 @@ const { SharpApiCoreService, SharpApiJobTypeEnum } = require('@sharpapi/sharpapi
  */
 class SharpApiResumeJobMatchScoreService extends SharpApiCoreService {
   /**
+   * Creates a new SharpApiResumeJobMatchScoreService instance
+   * @param {string} apiKey - Your SharpAPI API key
+   * @param {string} [apiBaseUrl='https://sharpapi.com/api/v1'] - API base URL
+   */
+  constructor(apiKey, apiBaseUrl = 'https://sharpapi.com/api/v1') {
+    super(apiKey, apiBaseUrl, '@sharpapi/sharpapi-node-resume-job-match-score/1.0.1');
+  }
+
+  /**
    * Compares a resume to a job description and provides match scores and explanations.
    * This endpoint helps evaluate how well a candidate's resume matches a specific job description.
    *
