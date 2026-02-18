@@ -9,6 +9,10 @@
 
 **SharpAPI Resume Job Match Score** analyzes how well a resume matches a job description, providing a compatibility score. Helps recruiters quickly identify the best candidates.
 
+Supported resume files - **11 file formats**: **DOC, DOCX, TXT, RTF, PDF, JPG, JPEG, JPE, PNG, TIFF, TIF**
+
+And yes - it handles those **flattened PDFs** where the entire resume is just images instead of text.
+
 ---
 
 ## 📋 Table of Contents
