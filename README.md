@@ -63,10 +63,17 @@ const fs = require('fs');
 const resumePath = './resume.pdf';
 const jobDescription = 'Senior Software Engineer position...';
 
+// Optional scoring directives (max 5000 chars). See "Context directives" below.
+const context = `
+EMPHASIZE: backend scalability
+DEEMPHASIZE: frontend frameworks
+CREDIT: AWS
+`.trim();
+
 async function calculateMatchScore() {
   try {
-    // Submit matching job
-    const statusUrl = await service.resumeJobMatchScore(resumePath, jobDescription);
+    // Submit matching job — language and context are optional
+    const statusUrl = await service.resumeJobMatchScore(resumePath, jobDescription, 'English', context);
     console.log('Job submitted. Status URL:', statusUrl);
 
     // Fetch results (polls automatically until complete)
@@ -123,6 +130,31 @@ For more examples, visit the [Product Page](https://sharpapi.com/en/catalog/ai/h
 - **Recruitment Efficiency**: Reduce time spent on unqualified candidates
 - **Job Seeker Tools**: Help candidates understand fit for positions
 - **Talent Analytics**: Analyze hiring patterns and candidate quality
+
+---
+
+## Context directives
+
+The optional `context` parameter lets you steer the scoring engine using a formal directive contract. The engine recognises three directive shapes, which can be mixed freely in a single string:
+
+| Directive | Effect |
+|-----------|--------|
+| `EMPHASIZE: <topic>` | Increases the matching metric weight by one step |
+| `DEEMPHASIZE: <topic>` | Decreases the matching metric weight by one step |
+| `CREDIT: <skill \| tool \| certification>` | Treats the named item as a plausible role requirement even if it is absent from the job description |
+
+Directives influence the `overall_match` score and the individual metric scores before the weighted average is computed.
+
+**Limit:** the context string may be up to **5000 characters**. Requests exceeding the limit fail with HTTP 422.
+
+Example:
+
+```text
+EMPHASIZE: backend scalability
+DEEMPHASIZE: frontend frameworks
+CREDIT: AWS
+CREDIT: Kubernetes
+```
 
 ---
 

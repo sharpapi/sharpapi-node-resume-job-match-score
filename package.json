@@ -1,6 +1,6 @@
 {
   "name": "@sharpapi/sharpapi-node-resume-job-match-score",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "SharpAPI.com Node.js SDK for matching resumes to job descriptions",
   "main": "src/index.js",
   "scripts": {
